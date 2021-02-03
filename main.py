@@ -1,31 +1,12 @@
 import aioesphomeapi
 import asyncio
-#import win32api
-#import win32gui
 import register
 import datetime
 
-# APPCOMMAND_MIC_ON_OFF_TOGGLE      44 Toggle the microphone.
-# APPCOMMAND_MICROPHONE_VOLUME_DOWN 25 Decrease microphone volume.
-# APPCOMMAND_MICROPHONE_VOLUME_MUTE 24 Mute the microphone.
-# APPCOMMAND_MICROPHONE_VOLUME_UP   26 Increase microphone volume.
 
 host =  "192.168.2.31"
 password =  "EspAdminn"
-#loop = asyncio.get_running_loop()
-#cli = aioesphomeapi.APIClient(loop, host, 6053, password)
 
-# def mic_man(state):
-#     WM_APPCOMMAND = 0x319
-#     APPCOMMAND_MICROPHONE_VOLUME_MUTE = 0x180000 #24
-#     APPCOMMAND_MIC_ON_OFF_TOGGLE      = 0x2C0000 #44
-#     APPCOMMAND_MICROPHONE_VOLUME_DOWN = 0x190000 #25
-#     APPCOMMAND_MICROPHONE_VOLUME_UP   = 0x1a0000 #26
-#     hwnd_active = win32gui.GetForegroundWindow()
-#     if state == True:
-#         win32api.SendMessage(hwnd_active, WM_APPCOMMAND, None, APPCOMMAND_MICROPHONE_VOLUME_UP)
-#     if state == False:
-#         win32api.SendMessage(hwnd_active, WM_APPCOMMAND, None, APPCOMMAND_MICROPHONE_VOLUME_MUTE)
 
 async def info ():
     """Connect to an ESPHome device and get details."""
@@ -99,14 +80,11 @@ async def main():
     await cli.subscribe_states(change_callback)
 
 loop = asyncio.get_event_loop()
-#asyncio.ensure_future(main())
-try:
 
+try:
      #asyncio.ensure_future(info())
      asyncio.ensure_future(main())
      loop.run_forever()
-#except cli.call_connection_lost:
- #   pass
 except KeyboardInterrupt:
     pass
 finally:
