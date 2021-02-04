@@ -82,8 +82,8 @@ try:
      #asyncio.ensure_future(info())
      asyncio.ensure_future(main())
      loop.run_forever()
-except Exception as e:
-      print(e)
+# except Exception as e:
+#       print(e)
 except KeyboardInterrupt:
     pass
 finally:
