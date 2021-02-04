@@ -69,13 +69,10 @@ async def main():
     await cli.connect(login=True)
 
     def change_callback(state):
-        #if state.key == 575851988:
         today = datetime.datetime.today()
         if state.state != 0.0:
-#            print(str(today.strftime("%d.%m.%Y %H:%M:%S")) +' '+ str(state))
             print(_log(state.key,state.state,state.missing_state))
             #register.send(_log(state.key,state.state,state.missing_state),2)
-
     # Subscribe to the state changes
     await cli.subscribe_states(change_callback)
 
@@ -85,6 +82,8 @@ try:
      #asyncio.ensure_future(info())
      asyncio.ensure_future(main())
      loop.run_forever()
+except Exception as e:
+      print(e)
 except KeyboardInterrupt:
     pass
 finally:
